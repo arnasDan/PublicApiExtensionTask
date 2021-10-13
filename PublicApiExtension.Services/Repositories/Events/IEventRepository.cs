@@ -8,9 +8,10 @@ namespace PublicApiExtension.Services.Repositories.Events
 {
     public interface IEventRepository
     {
-        Task<List<EventReadModel>> GetEvents(EventsFilter filter, CancellationToken token);
+        Task<IEnumerable<EventReadModel>> GetEvents(EventsFilter filter, CancellationToken token);
         Task<Guid> AddEvent(EventWriteModel model, CancellationToken token);
+        Task<bool> UpdateEvent(Guid id, EventWriteModel model, CancellationToken token);
         Task<EventReadModel> GetById(Guid id, CancellationToken token);
-        Task DeleteById(Guid id, CancellationToken token);
+        Task<bool> DeleteById(Guid id, CancellationToken token);
     }
 }

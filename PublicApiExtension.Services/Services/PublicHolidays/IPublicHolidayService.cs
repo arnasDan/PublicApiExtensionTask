@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PublicApiExtension.Models;
+using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -6,7 +8,6 @@ namespace PublicApiExtension.Services.Services.PublicHolidays
 {
     public interface IPublicHolidayService
     {
-        Task<bool> IsDateHoliday(DateTime date, CancellationToken cancellationToken);
-        Task<bool> DoesDateRangeContainHoliday(DateTime start, DateTime end, CancellationToken cancellationToken);
+        Task<List<Holiday>> GetHolidaysInRange(DateTime start, DateTime end, CancellationToken cancellationToken);
     }
 }

@@ -19,7 +19,7 @@ namespace PublicApiExtension.Services.Repositories.Events
             _dbContext = dbContext;
         }
 
-        public async Task<List<EventReadModel>> GetEvents(EventsFilter filter, CancellationToken token)
+        public async Task<IEnumerable<EventReadModel>> GetEvents(EventsFilter filter, CancellationToken token)
         {
             var query = _dbContext.Events.AsQueryable();
 
@@ -33,8 +33,7 @@ namespace PublicApiExtension.Services.Repositories.Events
                 query = query.Where(e => e.EndDate >= filter.EndsAfter);
 
             return (await query.ToListAsync(token))
-                .Select(e => e.ToModel())
-                .ToList();
+                .Select(e => e.ToModel());
         }
 
         public async Task<Guid> AddEvent(EventWriteModel model, CancellationToken token)
@@ -58,13 +57,34 @@ namespace PublicApiExtension.Services.Repositories.Events
             return entity.ToModel();
         }
 
-        public async Task DeleteById(Guid id, CancellationToken token)
+        public async Task<bool> DeleteById(Guid id, CancellationToken token)
         {
             var entity = await GetEntityById(id, token);
+
+            if (entity == null)
+                return false;
 
             _dbContext.Events.Remove(entity);
 
             await _dbContext.SaveChangesAsync(token);
+
+            return true;
+        }
+
+        public async Task<bool> UpdateEvent(Guid id, EventWriteModel model, CancellationToken token)
+        {
+            var entityToUpdate = await GetEntityById(id, token);
+
+            if (entityToUpdate == null)
+                return false;
+
+            entityToUpdate.Name = model.Name;
+            entityToUpdate.StartDate = model.StartDate;
+            entityToUpdate.EndDate = model.EndDate;
+
+            await _dbContext.SaveChangesAsync(token);
+
+            return true;
         }
     }
 }

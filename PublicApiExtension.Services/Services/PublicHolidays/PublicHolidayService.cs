@@ -8,17 +8,19 @@ using System.Threading.Tasks;
 
 namespace PublicApiExtension.Services.Services.PublicHolidays
 {
-    public class PublicHolidayService
+    public class PublicHolidayService : IPublicHolidayService
     {
-        private readonly ConcurrentDictionary<(int year, string CountryCode), IEnumerable<Holiday>> _holidays = new();
+        private readonly ConcurrentDictionary<int, IEnumerable<Holiday>> _holidays = new();
         private readonly IHolidayProvider _holidayProvider;
+        private readonly string _countryCode;
 
-        public PublicHolidayService(IHolidayProvider holidayProvider)
+        public PublicHolidayService(IHolidayProvider holidayProvider, string countryCode)
         {
             _holidayProvider = holidayProvider;
+            _countryCode = countryCode;
         }
 
-        public async Task<List<Holiday>> GetHolidaysInRange(DateTime start, DateTime end, string countryCode, CancellationToken cancellationToken)
+        public async Task<List<Holiday>> GetHolidaysInRange(DateTime start, DateTime end, CancellationToken cancellationToken)
         {
             start = start.Date;
             end = end.Date;
@@ -28,7 +30,7 @@ namespace PublicApiExtension.Services.Services.PublicHolidays
 
             var holidays = (await Task.WhenAll(Enumerable
                 .Range(start.Year, end.Year - start.Year)
-                .Select(async year => await GetHolidays(year, countryCode, cancellationToken))))
+                .Select(async year => await GetHolidays(year, cancellationToken))))
                 .SelectMany(h => h);
 
             return holidays
@@ -36,14 +38,14 @@ namespace PublicApiExtension.Services.Services.PublicHolidays
                 .ToList();
         }
 
-        private async Task<IEnumerable<Holiday>> GetHolidays(int year, string countryCode, CancellationToken cancellationToken)
+        private async Task<IEnumerable<Holiday>> GetHolidays(int year, CancellationToken cancellationToken)
         {
-            if (_holidays.TryGetValue((year, countryCode), out var holidays))
+            if (_holidays.TryGetValue(year, out var holidays))
                 return holidays;
 
-            holidays = await _holidayProvider.GetHolidays(countryCode, year, cancellationToken);
+            holidays = await _holidayProvider.GetHolidays(_countryCode, year, cancellationToken);
 
-            _holidays[(year, countryCode)] = holidays;
+            _holidays[year] = holidays;
 
             return holidays;
         } 
