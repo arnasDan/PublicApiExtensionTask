@@ -1,6 +1,6 @@
-﻿namespace PublicApiExtension.Clients.Models
+﻿namespace PublicApiExtension.Clients.NagerDate.Models
 {
-    public enum HolidayType
+    public enum NagerDateHolidayType
     {
         Public,
         Bank,

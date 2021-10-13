@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PublicApiExtension.Clients.Models
+namespace PublicApiExtension.Clients.NagerDate.Models
 {
-    public class Holiday
+    public class NagerDateHoliday
     {
         public DateTime Date { get; set; }
         public string LocalName { get; set; }
@@ -13,6 +13,6 @@ namespace PublicApiExtension.Clients.Models
         public bool Global { get; set; }
         public List<string> Counties { get; set; }
         public int? LaunchYear { get; set; }
-        public List<HolidayType> Types { get; set; }
+        public List<NagerDateHolidayType> Types { get; set; }
     }
 }

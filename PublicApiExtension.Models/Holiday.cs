@@ -2,7 +2,5 @@
 
 namespace PublicApiExtension.Models
 {
-    public class Class1
-    {
-    }
+    public record Holiday (DateTime Date, string Name);
 }

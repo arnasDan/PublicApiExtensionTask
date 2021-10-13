@@ -1,5 +1,5 @@
 using AutoFixture.Xunit2;
-using PublicApiExtension.Clients.Clients.NagerDate;
+using PublicApiExtension.Clients.NagerDate.Client;
 using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
