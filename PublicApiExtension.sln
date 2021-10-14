@@ -3,17 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicApiExtension.Api", "PublicApiExtension\PublicApiExtension.Api.csproj", "{42A2BAA8-874B-4315-8EEF-73A9E106E9D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicApiExtension.Api", "PublicApiExtension\PublicApiExtension.Api.csproj", "{42A2BAA8-874B-4315-8EEF-73A9E106E9D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicApiExtension.Models", "PublicApiExtension.Models\PublicApiExtension.Models.csproj", "{BF0F2B6A-C9ED-4B15-A4E3-9B74EBECDC88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicApiExtension.Models", "PublicApiExtension.Models\PublicApiExtension.Models.csproj", "{BF0F2B6A-C9ED-4B15-A4E3-9B74EBECDC88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicApiExtension.Services", "PublicApiExtension.Services\PublicApiExtension.Services.csproj", "{9AF62237-58D3-4540-B12E-15810B9DAAD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicApiExtension.Services", "PublicApiExtension.Services\PublicApiExtension.Services.csproj", "{9AF62237-58D3-4540-B12E-15810B9DAAD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicApiExtension.Storage", "PublicApiExtension.Storage\PublicApiExtension.Storage.csproj", "{41BE0A4F-8FE4-4BC8-AF66-92DC05945FB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicApiExtension.Storage", "PublicApiExtension.Storage\PublicApiExtension.Storage.csproj", "{41BE0A4F-8FE4-4BC8-AF66-92DC05945FB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicApiExtension.Clients", "PublicApiExtension.Clients\PublicApiExtension.Clients.csproj", "{A359D861-16D4-49B8-A4AE-109A390F7A55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicApiExtension.Clients", "PublicApiExtension.Clients\PublicApiExtension.Clients.csproj", "{A359D861-16D4-49B8-A4AE-109A390F7A55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicApiExtension.Clients.Tests", "PublicApiExtension.Clients.Tests\PublicApiExtension.Clients.Tests.csproj", "{6C7309B5-87A6-4C5E-9282-0A49F6CC7328}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicApiExtension.Clients.Tests", "PublicApiExtension.Clients.Tests\PublicApiExtension.Clients.Tests.csproj", "{6C7309B5-87A6-4C5E-9282-0A49F6CC7328}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{46741BE9-09B4-4D59-9B27-B2416F7539C7}"
+	ProjectSection(SolutionItems) = preProject
+		.config\dotnet-tools.json = .config\dotnet-tools.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicApiExtension.Services.Tests", "PublicApiExtension.Services.Tests\PublicApiExtension.Services.Tests.csproj", "{AD13FE3F-4FEA-4B87-BA8C-C52924EF3BE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +52,10 @@ Global
 		{6C7309B5-87A6-4C5E-9282-0A49F6CC7328}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C7309B5-87A6-4C5E-9282-0A49F6CC7328}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C7309B5-87A6-4C5E-9282-0A49F6CC7328}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD13FE3F-4FEA-4B87-BA8C-C52924EF3BE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD13FE3F-4FEA-4B87-BA8C-C52924EF3BE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD13FE3F-4FEA-4B87-BA8C-C52924EF3BE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD13FE3F-4FEA-4B87-BA8C-C52924EF3BE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
