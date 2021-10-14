@@ -29,7 +29,7 @@ namespace PublicApiExtension.Services.Services.PublicHolidays
                 throw new ArgumentException("End date must be after start date", nameof(end));
 
             var holidays = (await Task.WhenAll(Enumerable
-                .Range(start.Year, end.Year - start.Year)
+                .Range(start.Year, end.Year - start.Year + 1)
                 .Select(async year => await GetHolidays(year, cancellationToken))))
                 .SelectMany(h => h);
 

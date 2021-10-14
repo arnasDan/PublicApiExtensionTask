@@ -36,9 +36,9 @@ namespace PublicApiExtension.Services.Services.Events
                 throw new DomainException(DomainErrorCode.NotFound, EventErrors.NotFound);
         }
 
-        public Task<IEnumerable<EventReadModel>> Get(EventsFilter filter, CancellationToken token)
+        public async Task<List<EventReadModel>> Get(EventsFilter filter, CancellationToken token)
         {
-            return _eventRepository.GetEvents(filter, token);
+            return (await _eventRepository.GetEvents(filter, token)).ToList();
         }
 
         public async Task<EventReadModel> GetById(Guid id, CancellationToken token)
@@ -50,6 +50,8 @@ namespace PublicApiExtension.Services.Services.Events
 
         public async Task Update(Guid id, EventWriteModel model, CancellationToken token)
         {
+            await ValidateRange(model.StartDate, model.EndDate, token);
+
             var result = await _eventRepository.UpdateEvent(id, model, token);
 
             if (!result)
@@ -58,7 +60,7 @@ namespace PublicApiExtension.Services.Services.Events
 
         private async Task ValidateRange(DateTime start, DateTime end, CancellationToken token)
         {
-            if(end > start)
+            if(end < start)
                 throw new DomainException(DomainErrorCode.InvalidOperation, EventErrors.InvalidRange);
 
             var holidays = await _publicHolidayService.GetHolidaysInRange(start, end, token);

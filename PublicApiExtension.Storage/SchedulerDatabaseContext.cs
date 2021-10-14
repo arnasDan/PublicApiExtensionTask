@@ -15,6 +15,10 @@ namespace PublicApiExtension.Storage
             ChangeTracker.StateChanged += OnEntityStateChanged;
         }
 
+        public SchedulerDatabaseContext()
+        {
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Event>(entity =>
